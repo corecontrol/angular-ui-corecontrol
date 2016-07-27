@@ -1,0 +1,28 @@
+{
+  "name": "angular-ui-corecontrol",
+  "version": "0.0.0-0",
+  "homepage": "https://github.com/pneyrinck/corecontrol",
+  "authors": [
+    "Neyrinck"
+  ],
+  "description": "Core Control is a simple system for remote control.",
+  "dependencies": {
+    "angular": "~1.3.15",
+    "raphael": "~2.1.4",
+    "hammerjs": "~2.0.4",
+    "corecontrol": "~0.0.9",
+    "angular-corecontrol" : "~0.0.0"
+  },
+ 
+  "main": [
+    "js/angular-ui-corecontrol.js",
+    "css/angular-ui-corecontrol.css"
+  ],
+
+  "ignore": [
+    "schema",
+    "node_modules",
+    "bower_components",
+    "controls/*"
+  ]
+}
