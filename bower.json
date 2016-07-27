@@ -11,7 +11,7 @@
     "raphael": "~2.1.4",
     "hammerjs": "~2.0.4",
     "corecontrol": "~0.0.9",
-    "angular-corecontrol" : "~0.0.0"
+    "angular-corecontrol" : "~0.0.1"
   },
  
   "main": [
