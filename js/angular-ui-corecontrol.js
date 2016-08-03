@@ -624,7 +624,6 @@
 		var path = 'M'+backarcx1+' '+backarcy1+' A'+outerradius+' '+outerradius+' 0 '+largeArc+' 0 '+backarcx2+' '+backarcy2+' L'+backarcx3+' '+backarcy3+' A'+innerradius+' '+innerradius+' 0 '+largeArc+' 1 '+backarcx4+' '+backarcy4;
 		return path;
 	}
-
 	angular.module('ngUICoreControl').directive('ccKnob2', ['coreControl', function(coreControl) {
 	return function ccKnob2Directive(scope, element, attr) {
 		var id="";
@@ -860,5 +859,53 @@
 	    }
 	}]);
 
+	/*
+	*******************************************************
+		Label
+	********************************************************
+	*/
+
+	angular.module('ngUICoreControl').directive('ccLabel', ['coreControl', function(coreControl){
+	  return function ($scope, element, attr) {
+	        $scope.label = ""
+	        var id = (attr['ccId'] != undefined)?attr['ccId']:"";
+
+	        coreControl.subscribe(id, updateControlValue);
+
+	        function updateControlValue(value) {
+	            var newValue = String(value);
+	            if (newValue == $scope.label) return;
+	            $scope.label = newValue;
+	        }
+	      }
+	}]);
+
+	/*
+	*******************************************************
+		ccTextProperty
+	********************************************************
+	*/
+
+
+	angular.module('ngUICoreControl').directive('ccTextProperty', ['coreControl', function(coreControl ) {
+	return function ccTextPropertyDirective(scope, element, attr) {
+	  var controlValue = "";
+	  var id = (attr['ccId'] != undefined)?attr['ccId']:"";
+	  coreControl.subscribeControlProperty(id, updateControlProperty);
+	  function updateControlProperty(key, newvalue) {
+	  	console.log( " updateControlProperty :"+key);
+	      if (key == kVControlProperty_ValueString)
+	      {
+	        if (controlValue == newvalue) return;
+	        controlValue = newvalue;
+	        draw();
+	      }
+	  }
+	  function draw(){
+	  	console.log(" controlValue  :: "+controlValue);
+	    element.html(controlValue);
+	  }
+	  draw()
+	}}]);
 
 })( angular );
