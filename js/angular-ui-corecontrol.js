@@ -870,42 +870,15 @@
 	        $scope.label = ""
 	        var id = (attr['ccId'] != undefined)?attr['ccId']:"";
 
-	        coreControl.subscribe(id, updateControlValue);
+	        // coreControl.subscribe(id, updateControlValue);
+	        coreControl.subscribeControlProperty(id, updateControlProperty);
 
-	        function updateControlValue(value) {
+	        function updateControlProperty(key, value) {
 	            var newValue = String(value);
-	            if (newValue == $scope.label) return;
+	            if (newValue == $scope.label || key != 'label') return;
 	            $scope.label = newValue;
 	        }
 	      }
 	}]);
-
-	/*
-	*******************************************************
-		ccTextProperty
-	********************************************************
-	*/
-
-
-	angular.module('ngUICoreControl').directive('ccTextProperty', ['coreControl', function(coreControl ) {
-	return function ccTextPropertyDirective(scope, element, attr) {
-	  var controlValue = "";
-	  var id = (attr['ccId'] != undefined)?attr['ccId']:"";
-	  coreControl.subscribeControlProperty(id, updateControlProperty);
-	  function updateControlProperty(key, newvalue) {
-	  	console.log( " updateControlProperty :"+key);
-	      if (key == kVControlProperty_ValueString)
-	      {
-	        if (controlValue == newvalue) return;
-	        controlValue = newvalue;
-	        draw();
-	      }
-	  }
-	  function draw(){
-	  	console.log(" controlValue  :: "+controlValue);
-	    element.html(controlValue);
-	  }
-	  draw()
-	}}]);
 
 })( angular );
